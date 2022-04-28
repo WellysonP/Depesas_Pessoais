@@ -1,5 +1,7 @@
 import 'package:expenses/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 main() => runApp(ExpensesApp());
 
@@ -7,6 +9,11 @@ class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [const Locale('pt', 'BR')],
       debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
@@ -61,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                       ),
                       padding: EdgeInsets.all(10),
                       child: Text(
-                        tr.value.toString(),
+                        "R\$ ${tr.value.toStringAsFixed(2)}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -80,7 +87,8 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          tr.date.toString(),
+                          DateFormat("EEEE, d 'de' MMMM 'de' y", "pt_BR")
+                              .format(tr.date),
                           style: TextStyle(
                             color: Colors.grey,
                           ),
