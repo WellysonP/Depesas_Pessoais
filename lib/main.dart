@@ -5,6 +5,7 @@ import 'componentes/transactions_form.dart';
 import 'componentes/transactions_list.dart';
 import 'models/transaction.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import './componentes/chart.dart';
 
 main() => runApp(ExpensesApp());
 
@@ -51,7 +52,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [];
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: "t1",
+        title: "Novo tenis",
+        value: 135.67,
+        date: DateTime.now().subtract(Duration(days: 3))),
+    Transaction(
+        id: "t2",
+        title: "Monitor",
+        value: 1679.90,
+        date: DateTime.now().subtract(Duration(days: 30))),
+    Transaction(
+      id: "t3",
+      title: "calçados",
+      value: 896.45,
+      date: DateTime.now(),
+    ),
+  ];
+
+  List<Transaction> get _recentTransacrions {
+    return _transactions.where((tr) {
+      return tr.date.isAfter(DateTime.now().subtract(
+        Duration(days: 7),
+      ));
+    }).toList();
+  }
 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
@@ -92,12 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Text("Gráficos"),
-              ),
-            ),
+            Chart(_recentTransacrions),
             TransactionList(_transactions),
           ],
         ),
