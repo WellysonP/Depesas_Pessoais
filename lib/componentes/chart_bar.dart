@@ -17,14 +17,14 @@ class ChartBar extends StatelessWidget {
         return Column(
           children: [
             Container(
-              height: constraints.maxHeight * 0.15,
+              height: constraints.maxHeight * 0.10,
               child: FittedBox(
                 child: Text(NumberFormat.currency(
                         locale: "pt", customPattern: " #,###.# ")
                     .format(value)),
               ),
             ),
-            SizedBox(height: constraints.maxHeight * 0.05),
+            SizedBox(height: constraints.maxHeight * 0.10),
             Container(
               height: constraints.maxHeight * 0.6,
               width: 10,
@@ -53,9 +53,9 @@ class ChartBar extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: constraints.maxHeight * 0.05),
+            SizedBox(height: constraints.maxHeight * 0.10),
             Container(
-              height: constraints.maxHeight * 0.15,
+              height: constraints.maxHeight * 0.10,
               child: Text(label),
             )
           ],
