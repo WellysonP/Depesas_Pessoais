@@ -24,7 +24,7 @@ class ExpensesApp extends StatelessWidget {
       home: MyHomePage(),
       theme: theme.copyWith(
         colorScheme: theme.colorScheme.copyWith(
-          primary: Colors.purple,
+          primary: Color.fromARGB(255, 111, 20, 136),
           secondary: Colors.amber,
         ),
         textTheme: theme.textTheme.copyWith(
@@ -56,24 +56,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    // Transaction(
-    //     id: "t1",
-    //     title: "Novo tenis",
-    //     value: 135.67,
-    //     date: DateTime.now().subtract(Duration(days: 3))),
-    // Transaction(
-    //     id: "t2",
-    //     title: "Monitor",
-    //     value: 79.90,
-    //     date: DateTime.now().subtract(Duration(days: 5))),
-    // Transaction(
-    //   id: "t3",
-    //   title: "calçados",
-    //   value: 100.45,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  final List<Transaction> _transactions = [];
 
   List<Transaction> get _recentTransacrions {
     return _transactions.where((tr) {

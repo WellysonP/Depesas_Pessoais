@@ -17,9 +17,8 @@ class ChartBar extends StatelessWidget {
           height: 20,
           child: FittedBox(
             child: Text(
-                NumberFormat.currency(locale: "pt", customPattern: "#,###.#")
+                NumberFormat.currency(locale: "pt", customPattern: " #,###.# ")
                     .format(value)),
-            // child: Text("${value.toStringAsFixed(2)} "),
           ),
         ),
         SizedBox(height: 5),
