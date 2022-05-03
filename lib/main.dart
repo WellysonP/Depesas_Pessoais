@@ -33,6 +33,10 @@ class ExpensesApp extends StatelessWidget {
               fontSize: 17,
               fontWeight: FontWeight.bold,
               color: Colors.black),
+          button: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         appBarTheme: AppBarTheme(
           titleTextStyle: TextStyle(
@@ -53,22 +57,22 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [
-    Transaction(
-        id: "t1",
-        title: "Novo tenis",
-        value: 135.67,
-        date: DateTime.now().subtract(Duration(days: 3))),
-    Transaction(
-        id: "t2",
-        title: "Monitor",
-        value: 79.90,
-        date: DateTime.now().subtract(Duration(days: 5))),
-    Transaction(
-      id: "t3",
-      title: "calçados",
-      value: 100.45,
-      date: DateTime.now(),
-    ),
+    // Transaction(
+    //     id: "t1",
+    //     title: "Novo tenis",
+    //     value: 135.67,
+    //     date: DateTime.now().subtract(Duration(days: 3))),
+    // Transaction(
+    //     id: "t2",
+    //     title: "Monitor",
+    //     value: 79.90,
+    //     date: DateTime.now().subtract(Duration(days: 5))),
+    // Transaction(
+    //   id: "t3",
+    //   title: "calçados",
+    //   value: 100.45,
+    //   date: DateTime.now(),
+    // ),
   ];
 
   List<Transaction> get _recentTransacrions {
@@ -79,12 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  _addTransaction(String title, double value) {
+  _addTransaction(String title, double value, DateTime date) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
       title: title,
       value: value,
-      date: DateTime.now(),
+      date: date,
     );
 
     setState(() {
@@ -96,10 +100,19 @@ class _MyHomePageState extends State<MyHomePage> {
 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (_) {
-          return TransactionForm(_addTransaction);
-        });
+      context: context,
+      builder: (_) {
+        return TransactionForm(_addTransaction);
+      },
+    );
+  }
+
+  _removeTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((tr) {
+        return tr.id == id;
+      });
+    });
   }
 
   @override
@@ -119,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Chart(_recentTransacrions),
-            TransactionList(_transactions),
+            TransactionList(_transactions, _removeTransaction),
           ],
         ),
       ),
