@@ -118,7 +118,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 _showChart = !_showChart;
               });
             },
-            icon: Icon(Icons.align_vertical_bottom),
+            icon: Icon(
+                _showChart ? Icons.list : Icons.align_vertical_bottom_outlined),
           ),
         IconButton(
           onPressed: () => _openTransactionFormModal(context),
@@ -138,12 +139,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             if (_showChart || !islandscape)
               Container(
-                height: availableHeight * (islandscape ? 0.70 : 0.29),
+                height: availableHeight * (islandscape ? 0.80 : 0.29),
                 child: Chart(_recentTransacrions),
               ),
             if (!_showChart || !islandscape)
               Container(
-                height: availableHeight * 0.71,
+                height: availableHeight * (islandscape ? 0.95 : 0.71),
                 child: TransactionList(_transactions, _removeTransaction),
               ),
           ],
