@@ -57,6 +57,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final List<Transaction> _transactions = [];
+  bool _showChart = false;
 
   List<Transaction> get _recentTransacrions {
     return _transactions.where((tr) {
@@ -100,6 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    bool islandscape =
+        MediaQuery.of(context).orientation == Orientation.landscape;
     final appBar = AppBar(
       title: Text(
         "Despesas Pessoais",
@@ -108,6 +111,15 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       actions: [
+        if (islandscape)
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _showChart = !_showChart;
+              });
+            },
+            icon: Icon(Icons.align_vertical_bottom),
+          ),
         IconButton(
           onPressed: () => _openTransactionFormModal(context),
           icon: Icon(Icons.add),
@@ -124,14 +136,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              height: availableHeight * (0.29),
-              child: Chart(_recentTransacrions),
-            ),
-            Container(
-              height: availableHeight * 0.71,
-              child: TransactionList(_transactions, _removeTransaction),
-            ),
+            if (_showChart || !islandscape)
+              Container(
+                height: availableHeight * (islandscape ? 0.70 : 0.29),
+                child: Chart(_recentTransacrions),
+              ),
+            if (!_showChart || !islandscape)
+              Container(
+                height: availableHeight * 0.71,
+                child: TransactionList(_transactions, _removeTransaction),
+              ),
           ],
         ),
       ),
