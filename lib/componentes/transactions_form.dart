@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'adaptative_button.dart';
 import 'adaptative_textfild.dart';
 
@@ -60,15 +59,14 @@ class _TransactionFormState extends State<TransactionForm> {
             children: [
               AdaptativeTextFild(
                 label: "Título",
-                onSubmitted: () => _submitFomr(),
+                onSubmitted: (_) => _submitFomr(),
                 valueControler: _titleControler,
-                keyboardTypeNumber: false,
               ),
               AdaptativeTextFild(
                 label: "Valor R\$",
-                onSubmitted: () => _submitFomr(),
+                onSubmitted: (_) => _submitFomr(),
                 valueControler: _valueControler,
-                keyboardTypeNumber: true,
+                keyboardType: TextInputType.numberWithOptions(),
               ),
               Container(
                 height: 70,
