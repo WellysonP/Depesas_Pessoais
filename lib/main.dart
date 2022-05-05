@@ -161,7 +161,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
-
     return Platform.isIOS
         ? CupertinoPageScaffold(
             navigationBar: CupertinoNavigationBar(
