@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'adaptative_button.dart';
 import 'adaptative_textfild.dart';
 import 'adaptative_date_picker.dart';
@@ -26,22 +25,6 @@ class _TransactionFormState extends State<TransactionForm> {
     }
     widget.onSubmit(title, value, _selectedDate);
   }
-
-  // _showDatePicker() {
-  //   showDatePicker(
-  //     context: context,
-  //     initialDate: DateTime.now(),
-  //     firstDate: DateTime(2000),
-  //     lastDate: DateTime.now(),
-  //   ).then((picketDate) {
-  //     if (picketDate == null) {
-  //       return;
-  //     } else
-  //       setState(() {
-  //         _selectedDate = picketDate;
-  //       });
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
